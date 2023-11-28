@@ -756,7 +756,7 @@ class Filesystem {
         break;
     }
 
-    try {
+try {
       result = await filesystem.exec(command, args);
       // must clear the dirty bit after resize
       if (fstype.toLowerCase() == "ntfs") {
@@ -764,6 +764,10 @@ class Filesystem {
       }
       return result;
     } catch (err) {
+      if (err.message.includes("xfs_growfs: XFS_IOC_FSGROWFSDATA xfsctl failed: No space left on device")) {
+        console.log("No space left on device. Conntinuing");
+        return;
+      }
       throw err;
     }
   }
