@@ -765,7 +765,7 @@ try {
       return result;
     } catch (err) {
       if (err.message.includes("xfs_growfs: XFS_IOC_FSGROWFSDATA xfsctl failed: No space left on device")) {
-        console.log("No space left on device. Conntinuing");
+        console.log("No space left on device. Conntinuing.");
         return;
       }
       throw err;
